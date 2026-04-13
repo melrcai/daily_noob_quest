@@ -9,43 +9,55 @@ void toLowerCase(char mssg[]) {
     }
 }
 
+int countMatches(char input[], char sample[]) {
+    int count = 0;
+    if (strstr(input, "free") && strstr(sample, "free")) count++;
+    if (strstr(input, "money") && strstr(sample, "money")) count++;
+    if (strstr(input, "win") && strstr(sample, "win")) count++;
+    if (strstr(input, "offer") && strstr(sample, "offer")) count++;
+    if (strstr(input, "click") && strstr(sample, "click")) count++;
+    return count;
+}
+
 int main(void) {
 
     char mssg[200];
-    char *keywords[] = {"free", "win", "money", "offer", "click"};
-    double spamWeight[] = {0.8, 0.7, 0.9, 0.6, 0.65};
-    double notSpamWeight[] = {0.2, 0.3, 0.1, 0.4, 0.35};
-    double spamProb = 0.5;
-    double notSpamProb = 0.5;
-    int found = 0; // not found
+    char *spam[] = {"win money now", 
+                    "free offer click",
+                    "claim your prize"};
+
+    char *notSpam[] = {"how are you", 
+                       "u fine?", 
+                       "wanna grab sum coffee"};
+
 
     printf("Enter a message btch: ");
     fgets(mssg, sizeof(mssg), stdin);
     mssg[strcspn(mssg, "\n")] = 0;
 
     toLowerCase(mssg);
-
-    for (int i = 0; i < 5; i++) {
-        if(strstr(mssg, keywords[i]) != NULL) { //keyword[i] here represents the whole word
-          spamProb *= spamWeight[i];
-          notSpamProb *= notSpamWeight[i];
-          found = 1;
-          printf("Found: %s \n", keywords[i]);
-       }
-    }
-    printf("Spam Prob: %.5f\n", spamProb);
-    printf("Not Spam Prob: %.5f\n", notSpamProb);
     
-    if (!found) { //f no keyw is found, the if will nver run thus found stays 0
-        printf("no keywords found hehsz \n");
+    int maxSpam = 0, maxNotSpam = 0;
+
+    for (int i = 0; i < 3; i++) {
+        int score = countMatches(mssg, spam[i]);
+        if (score > maxSpam)
+            maxSpam = score;
     }
 
-    if (spamProb > notSpamProb) {
-        printf("this message is a spam btch.\n");
-    } else {
-        printf("u safe. not a spam hehez.");
+    for (int i = 0; i < 3; i++) {
+        int score = countMatches(mssg, notSpam[i]);
+        if (score > maxNotSpam)
+            maxNotSpam = score;
     }
 
+    printf("Spam score: %d\n", maxSpam);
+    printf("Not Spam score: %d\n", maxNotSpam);
+    
+    if (maxSpam > maxNotSpam)
+        printf("SPAM\n");
+    else
+        printf("NOT SPAM\n");
 
     return 0;
 }
