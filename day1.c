@@ -97,7 +97,7 @@ int main() {
         scores[maxIndex] = -1; // mark as used
     }
 
-    printf("\nVotes → Spam: %d | Not Spam: %d\n", spamVotes, notSpamVotes);
+    printf("\nVotes -> Spam: %d | Not Spam: %d\n", spamVotes, notSpamVotes);
 
     if (spamVotes > notSpamVotes)
         printf("\nFINAL: SPAM\n");
