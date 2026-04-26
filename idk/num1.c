@@ -21,3 +21,9 @@ int main(void) {
     
     return 0;
 }
+
+/*
+Write a program that takes an array of 5 integers and reverses them 
+without creating a second array and without using index brackets 
+nums[i] inside your loop.
+*/
