@@ -19,6 +19,7 @@ int main(void) {
 }
 
 /*
+(sodrainedaboutmymidtermsearliersoletmemakeexusesthistimehuhu)
 Create an array of 8 random numbers. Use a single 
 pointer to "walk" through the array and find the
 largest number.
