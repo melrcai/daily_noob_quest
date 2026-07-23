@@ -1,23 +1,18 @@
 #include <iostream>
 using namespace std;
 
-double quadrant (double &x, double &y);
+double quadrant (const double &x, const double &y);
 
 int main() {
-    double x, y;
+    double x = 0.0; 
+    double y = 3.14;
 
-    cout << "Enter coordinates: " << endl;
-    cout << "x = ";
-    cin >> x; 
-    cout << "y = ";
-    cin >> y;
-
-    cout << quadrant(x, y);
+    cout << quadrant(x, y) << endl;
 
     return 0;
 }
 
-double quadrant (double &x, double &y) {
+double quadrant (const double &x, const double &y) {
     if (x > 0 && y > 0) {
         return 1;
     } else if (x < 0 && y > 0) {
@@ -35,4 +30,6 @@ double quadrant (double &x, double &y) {
     }
 }
 
-// there's still sumthing to fix from the ff. given instr.
+
+// const added to read and not to modify the values of x and y
+// without const, the function would be able to modify the values of x and y, which is not desired in this case. The function is only meant to determine the quadrant based on the input values, not change them
